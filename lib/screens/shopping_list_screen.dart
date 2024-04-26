@@ -18,13 +18,15 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Daftar Belanja"),
+        titleTextStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+        backgroundColor: Colors.deepPurpleAccent.shade100,
       ),
       floatingActionButton: IconButton(
           onPressed: () {
             Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => const ShoppingList()));
           },
-          icon: Icon(Icons.arrow_back_ios_new_outlined)),
+          icon: const Icon(Icons.arrow_back_ios_new_outlined)),
       body: Column(
         children: [
           Expanded(
@@ -55,16 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   return const Center(child: CircularProgressIndicator());
                 }
               },
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const ShoppingList()));
-              },
-              child: const Text("Tambah Data"),
             ),
           ),
         ],

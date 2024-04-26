@@ -20,6 +20,8 @@ class _ShoppingListState extends State<ShoppingList> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Daftar Belanja"),
+        titleTextStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+        backgroundColor: Colors.deepPurpleAccent.shade100,
       ),
       floatingActionButton: IconButton(
           onPressed: () {
@@ -36,7 +38,8 @@ class _ShoppingListState extends State<ShoppingList> {
                 Expanded(
                   child: TextField(
                     controller: _controller_1,
-                    decoration: InputDecoration(hintText: 'Nama'),
+                    decoration: InputDecoration(
+                        hintText: 'Nama Produk', border: OutlineInputBorder()),
                   ),
                 ),
               ],
@@ -49,7 +52,8 @@ class _ShoppingListState extends State<ShoppingList> {
                 Expanded(
                   child: TextField(
                     controller: _controller_2,
-                    decoration: InputDecoration(hintText: 'NPM'),
+                    decoration: InputDecoration(
+                        hintText: 'Kode Produk', border: OutlineInputBorder()),
                   ),
                 ),
               ],
@@ -62,24 +66,33 @@ class _ShoppingListState extends State<ShoppingList> {
                 Expanded(
                   child: TextField(
                     controller: _controller_3,
-                    decoration: InputDecoration(hintText: 'Kelas'),
+                    decoration: InputDecoration(
+                        hintText: 'Jumlah', border: OutlineInputBorder()),
                   ),
                 ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-              onPressed: () {
-                _shoppingService.addShoppingItem(
-                    _controller_1.text, _controller_2.text, _controller_3.text);
-                _controller_1.clear();
-                _controller_2.clear();
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const HomeScreen()));
-              },
-              child: const Text("Input Data Baru"),
+          SizedBox(
+            width: 200,
+            height: 70,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: FloatingActionButton(
+                onPressed: () {
+                  _shoppingService.addShoppingItem(_controller_1.text,
+                      _controller_2.text, _controller_3.text, context);
+                  _controller_1.clear();
+                  _controller_2.clear();
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const HomeScreen()));
+                },
+                child: const Text("Tambah Data Baru"),
+                foregroundColor: Colors.black,
+                backgroundColor: Colors.deepPurpleAccent.shade100,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+              ),
             ),
           ),
         ],
